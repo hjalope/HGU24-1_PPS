@@ -1,0 +1,8 @@
+# 입력 받기
+A, B, C = map(int, input().split())
+
+# 계산 및 출력
+print((A + B) % C)
+print(((A % C) + (B % C)) % C)
+print((A * B) % C)
+print(((A % C) * (B % C)) % C)
