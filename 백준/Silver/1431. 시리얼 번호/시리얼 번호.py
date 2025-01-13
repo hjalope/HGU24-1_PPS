@@ -3,7 +3,7 @@ num = int(input())
 word_list = []
 
 for i in range(num):
-    word = input().strip()
+    word = input()
     total = sum(int(char) for char in word if char.isdigit()) # 숫자 추출 후 더하기
     word_list.append((word, total))
 
