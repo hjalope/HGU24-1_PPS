@@ -1,17 +1,15 @@
-def atm_time(sizes):
-    sizes.sort()
-    total_time = 0
-    current_wait = 0
+import sys
 
-    for time in sizes:
-        current_wait += time
-        total_time += current_wait
+n = int(sys.stdin.readline().strip())
+times = list(map(int, sys.stdin.readline().split()))
 
-    return total_time
+times.sort()
 
-num_people = int(input()) # 입력 받기
-sizes = list(map(int, input().split()))
+total_time = 0
+accumulated_time = 0
 
-total_time = atm_time(sizes)
+for time in times:
+    accumulated_time += time
+    total_time += accumulated_time
 
 print(total_time)
