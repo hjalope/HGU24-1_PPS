@@ -1,34 +1,19 @@
-def count_lans(lans, length):
-    count = 0
-    for lan in lans:
-        count += lan // length
-    return count
+import sys
 
-def max_lan_length(K, N, lans):
-    # 초기 예상 값 계산
-    total_length = sum(lans)
-    ideal_num = total_length // N
+k, n = map(int, sys.stdin.readline().split())
+cables = [int(sys.stdin.readline()) for _ in range(k)]
 
-    # 이진 탐색 범위 설정
-    low, high = 1, ideal_num
-    result = 0
+left, right = 1, max(cables)
+max_length = 0
 
-    while low <= high:
-        mid = (low + high) // 2
-        if count_lans(lans, mid) >= N:
-            result = mid  # 가능한 최대 길이를 저장
-            low = mid + 1  # 더 긴 길이 시도
-        else:
-            high = mid - 1  # 더 짧은 길이 시도
+while left <= right:
+    mid = (left + right) // 2
+    count = sum(cable // mid for cable in cables)
+    
+    if count >= n:
+        max_length = mid
+        left = mid + 1
+    else:
+        right = mid - 1
 
-    return result
-
-# 입력
-K, N = map(int, input().split())
-lans = [int(input()) for _ in range(K)]
-
-# 최대 랜선 길이 계산
-result = max_lan_length(K, N, lans)
-
-# 결과 출력
-print(result)
+print(max_length)
